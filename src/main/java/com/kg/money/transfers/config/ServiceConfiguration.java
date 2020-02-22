@@ -9,12 +9,14 @@ import org.glassfish.jersey.server.ResourceConfig;
 import com.kg.money.transfers.api.MoneyTransferResource;
 import com.kg.money.transfers.config.server.GrizzlyServer;
 import com.kg.money.transfers.config.server.Server;
+import com.kg.money.transfers.storage.FileAccountStorage;
 
 public class ServiceConfiguration {
     public static final URI APP_BASE_URI = URI.create("http://localhost:8080/");
 
     public Server configureServer() {
-        final ResourceConfig resourceConfig = new ResourceConfig(MoneyTransferResource.class);
+        final ResourceConfig resourceConfig = new ResourceConfig()
+                .register(new MoneyTransferResource(new FileAccountStorage()));
         final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(APP_BASE_URI, resourceConfig);
         return new GrizzlyServer(server);
     }

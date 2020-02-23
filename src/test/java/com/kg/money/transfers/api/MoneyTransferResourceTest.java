@@ -50,10 +50,30 @@ class MoneyTransferResourceTest {
     }
 
     @Test
-    public void shouldGetBadRequestWhenInvalidJsonBodyInRequest() {
-        final Response response = this.target.path("transfers")
+    public void shouldGetBadRequestWhenMissingOrInvalidJsonBodyInRequest() {
+        final Response invalidJsonResponse = this.target.path("transfers")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.json("{"));
+        final Response missingJsonResponse = this.target.path("transfers")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json(""));
+        assertThat(invalidJsonResponse.getStatus()).isEqualTo(BAD_REQUEST.getStatusCode());
+        assertThat(missingJsonResponse.getStatus()).isEqualTo(BAD_REQUEST.getStatusCode());
+    }
+
+    @Test
+    public void shouldGetBadRequestWhenMissingPropertyInRequest() {
+        final Response response = this.target.path("transfers")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json("{\"from\": \"id-1\", \"to\": \"id-2\"}"));
+        assertThat(response.getStatus()).isEqualTo(BAD_REQUEST.getStatusCode());
+    }
+
+    @Test
+    public void shouldGetBadRequestWhenInvalidTransferValue() {
+        final Response response = this.target.path("transfers")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json("{\"from\": \"id-1\", \"to\": \"id-2\", \"amount\": -9}"));
         assertThat(response.getStatus()).isEqualTo(BAD_REQUEST.getStatusCode());
     }
 

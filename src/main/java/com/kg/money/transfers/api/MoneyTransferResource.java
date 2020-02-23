@@ -30,7 +30,10 @@ public class MoneyTransferResource {
             final MoneyTransferRequest moneyTransferRequest = MoneyTransferRequest.fromJson(body);
         }
         catch(final JsonProcessingException e) {
-            return Response.status(BAD_REQUEST).entity("Invalid JSON in request body").build();
+            return Response.status(BAD_REQUEST).entity("Missing or invalid JSON in request body").build();
+        }
+        catch(final IllegalArgumentException e) {
+            return Response.status(BAD_REQUEST).entity(e.getMessage()).build();
         }
         return Response.ok().build();
     }

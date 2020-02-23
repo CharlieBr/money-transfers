@@ -1,10 +1,14 @@
 package com.kg.money.transfers.storage;
 
-import java.util.Optional;
+import java.math.BigDecimal;
 
 import com.kg.money.transfers.model.Account;
 
 public interface AccountStorage {
 
-    Optional<Account> getById(final String id);
+    boolean exists(final String id);
+
+    void transfer(final String sourceAccountId, final String destinationAccountId, final BigDecimal amount);
+
+    void updateAccount(final Account updatedAccount);
 }

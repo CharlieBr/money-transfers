@@ -1,5 +1,7 @@
 package com.kg.money.transfers.api;
 
+import static com.kg.money.transfers.validators.TransferValidator.checkIfTransferPossible;
+import static com.kg.money.transfers.validators.TransferValidator.validateExistingAccount;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 import javax.ws.rs.Consumes;
@@ -28,6 +30,7 @@ public class MoneyTransferResource {
     public Response transferMoney(final String body) {
         try {
             final MoneyTransferRequest moneyTransferRequest = MoneyTransferRequest.fromJson(body);
+            doTransfer(moneyTransferRequest);
         }
         catch(final JsonProcessingException e) {
             return Response.status(BAD_REQUEST).entity("Missing or invalid JSON in request body").build();
@@ -36,5 +39,14 @@ public class MoneyTransferResource {
             return Response.status(BAD_REQUEST).entity(e.getMessage()).build();
         }
         return Response.ok().build();
+    }
+
+    private void doTransfer(final MoneyTransferRequest moneyTransferRequest) {
+        final String sourceAccountId = validateExistingAccount(moneyTransferRequest.getSourceAccountId(),
+                this.accounts::exists);
+        final String destinationAccountId = validateExistingAccount(moneyTransferRequest.getDestinationAccountId(),
+                this.accounts::exists);
+        checkIfTransferPossible(sourceAccountId, destinationAccountId);
+        this.accounts.transfer(sourceAccountId, destinationAccountId, moneyTransferRequest.getAmount());
     }
 }

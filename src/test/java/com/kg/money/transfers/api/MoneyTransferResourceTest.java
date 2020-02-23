@@ -1,6 +1,7 @@
 package com.kg.money.transfers.api;
 
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
+import static javax.ws.rs.core.Response.Status.OK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.net.URI;
@@ -37,7 +38,7 @@ class MoneyTransferResourceTest {
         SERVER.start();
     }
 
-    private static Server configureServer () {
+    private static Server configureServer() {
         final ResourceConfig resourceConfig = new ResourceConfig()
                 .register(new MoneyTransferResource(new FileAccountStorage("test-accounts.json")));
         final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(SERVER_URI, resourceConfig);
@@ -75,6 +76,34 @@ class MoneyTransferResourceTest {
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .post(Entity.json("{\"from\": \"id-1\", \"to\": \"id-2\", \"amount\": -9}"));
         assertThat(response.getStatus()).isEqualTo(BAD_REQUEST.getStatusCode());
+    }
+
+    @Test
+    public void shouldGetBadRequestWhenSourceAndDestinationAccountIdsAreTheSame() {
+        final Response response = this.target.path("transfers")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json("{\"from\": \"id-1\", \"to\": \"id-1\", \"amount\": 10}"));
+        assertThat(response.getStatus()).isEqualTo(BAD_REQUEST.getStatusCode());
+    }
+
+    @Test
+    public void shouldGetBadRequestWhenSourceOrDestinationAccountIdsDoNotExist() {
+        final Response nonExistingSourceAccountIdResponse = this.target.path("transfers")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json("{\"from\": \"id-10\", \"to\": \"id-1\", \"amount\": 10}"));
+        final Response nonExistingDestinationAccountIdResponse = this.target.path("transfers")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json("{\"from\": \"id-1\", \"to\": \"id-10\", \"amount\": 10}"));
+        assertThat(nonExistingSourceAccountIdResponse.getStatus()).isEqualTo(BAD_REQUEST.getStatusCode());
+        assertThat(nonExistingDestinationAccountIdResponse.getStatus()).isEqualTo(BAD_REQUEST.getStatusCode());
+    }
+
+    @Test
+    public void shouldTransferMoney() {
+        final Response response = this.target.path("transfers")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json("{\"from\": \"id-1\", \"to\": \"id-2\", \"amount\": 10}"));
+        assertThat(response.getStatus()).isEqualTo(OK.getStatusCode());
     }
 
     @AfterAll

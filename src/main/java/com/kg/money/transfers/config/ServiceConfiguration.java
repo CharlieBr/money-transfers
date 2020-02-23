@@ -16,7 +16,7 @@ public class ServiceConfiguration {
 
     public Server configureServer() {
         final ResourceConfig resourceConfig = new ResourceConfig()
-                .register(new MoneyTransferResource(new FileAccountStorage()));
+                .register(new MoneyTransferResource(new FileAccountStorage("accounts.json")));
         final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(APP_BASE_URI, resourceConfig);
         return new GrizzlyServer(server);
     }

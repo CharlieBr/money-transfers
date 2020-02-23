@@ -20,7 +20,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.kg.money.transfers.config.ServiceConfiguration;
+import com.kg.money.transfers.config.MoneyTransferServiceConfiguration;
 import com.kg.money.transfers.config.server.GrizzlyServer;
 import com.kg.money.transfers.config.server.Server;
 import com.kg.money.transfers.storage.FileAccountStorage;
@@ -33,7 +33,7 @@ class MoneyTransferResourceTest {
 
     @BeforeAll
     static void setUp() throws Exception {
-        ServiceConfiguration.configureLogging();
+        MoneyTransferServiceConfiguration.configureLogging();
         SERVER = configureServer();
         SERVER.start();
     }

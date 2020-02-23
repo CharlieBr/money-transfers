@@ -1,8 +1,10 @@
 package com.kg.money.transfers.validators;
 
 import java.math.BigDecimal;
+import java.util.function.Predicate;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.kg.money.transfers.storage.AccountStorage;
 
 public class MoneyTransferRequestValidator {
 
@@ -44,5 +46,18 @@ public class MoneyTransferRequestValidator {
 
     private static String missingPropertyMessage(final String name) {
         return "Missing property '" + name + "'!";
+    }
+
+    public static String validateExistingAccount(final String id, final AccountStorage accountStorage) {
+        if(!accountStorage.exists(id)) {
+            throw new IllegalArgumentException("Account with id " + id + " does not exist!");
+        }
+        return id;
+    }
+
+    public static void checkIfDifferentAccounts(final String sourceAccountId, final String destinationAccountId) {
+        if(sourceAccountId.equals(destinationAccountId)) {
+            throw new IllegalArgumentException("Could not transfer account between the same account");
+        }
     }
 }

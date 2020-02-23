@@ -13,7 +13,7 @@ import com.kg.money.transfers.config.server.GrizzlyServer;
 import com.kg.money.transfers.config.server.Server;
 import com.kg.money.transfers.storage.FileAccountStorage;
 
-public class ServiceConfiguration {
+public class MoneyTransferServiceConfiguration {
     private static final URI APP_BASE_URI = URI.create("http://localhost:8080/");
 
     public static Server configureServer() {

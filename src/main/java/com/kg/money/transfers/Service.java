@@ -17,8 +17,7 @@ public class Service {
     }
 
     public static void main(String[] args) throws Exception {
-       final ServiceConfiguration config = new ServiceConfiguration();
-       config.configureLogging();
-       new Service(config.configureServer()).run();
+       ServiceConfiguration.configureLogging();
+       new Service(ServiceConfiguration.configureServer()).run();
     }
 }

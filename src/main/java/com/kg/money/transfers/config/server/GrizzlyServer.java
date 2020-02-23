@@ -10,7 +10,13 @@ public class GrizzlyServer implements Server {
         this.server = server;
     }
 
+    @Override
     public void start() throws Exception {
         this.server.start();
+    }
+
+    @Override
+    public void stop() {
+        this.server.shutdownNow();
     }
 }

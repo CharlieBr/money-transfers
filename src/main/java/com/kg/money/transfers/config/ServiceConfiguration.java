@@ -14,16 +14,16 @@ import com.kg.money.transfers.config.server.Server;
 import com.kg.money.transfers.storage.FileAccountStorage;
 
 public class ServiceConfiguration {
-    public static final URI APP_BASE_URI = URI.create("http://localhost:8080/");
+    private static final URI APP_BASE_URI = URI.create("http://localhost:8080/");
 
-    public Server configureServer() {
+    public static Server configureServer() {
         final ResourceConfig resourceConfig = new ResourceConfig()
                 .register(new MoneyTransferResource(new FileAccountStorage("accounts.json")));
         final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(APP_BASE_URI, resourceConfig);
         return new GrizzlyServer(server);
     }
 
-    public void configureLogging() {
+    public static void configureLogging() {
         LogManager.getLogManager().reset();
         SLF4JBridgeHandler.install();
     }

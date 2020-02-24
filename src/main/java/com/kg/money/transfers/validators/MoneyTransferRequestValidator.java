@@ -1,7 +1,6 @@
 package com.kg.money.transfers.validators;
 
 import java.math.BigDecimal;
-import java.util.function.Predicate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.kg.money.transfers.storage.AccountStorage;

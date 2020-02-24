@@ -1,13 +1,16 @@
 package com.kg.money.transfers.storage;
 
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import com.kg.money.transfers.model.Account;
 
@@ -27,28 +30,43 @@ public class FileAccountStorage implements AccountStorage {
         return this.accounts.containsKey(id);
     }
 
-    public void transfer(final String sourceAccountId, final String destinationAccountId, final BigDecimal amount) {
-        final Lock sourceAccountLock = this.accountLocks.get(sourceAccountId);
-        sourceAccountLock.lock();
-        final Account sourceAccount = this.accounts.get(sourceAccountId);
-        final BigDecimal balance = sourceAccount.getBalance();
-        if(balance.compareTo(amount) < 0) {
-            sourceAccountLock.unlock();
-            throw new IllegalArgumentException("Balance is too low!");
-        }
-        final Lock destinationAccountLock = this.accountLocks.get(destinationAccountId);
-        destinationAccountLock.lock();
-        final Account destinationAccount = this.accounts.get(destinationAccountId);
-        final Account updatedDestinationAccount = destinationAccount.topUp(amount);
-        final Account updatedSourceAccount = sourceAccount.withdraw(amount);
-        updateAccount(updatedSourceAccount);
-        updateAccount(updatedDestinationAccount);
-        sourceAccountLock.unlock();
-        destinationAccountLock.unlock();
+    @Override
+    public BigDecimal getBalanceForAccount(final String id) {
+        return this.accounts.get(id).getBalance();
     }
 
     @Override
     public void updateAccount(final Account account) {
         this.accounts.put(account.getId(), account);
+    }
+
+    @Override
+    public void transfer(final String sourceAccountId, final String destinationAccountId, final BigDecimal amount) {
+        final List<Lock> locks = getSortedLocksForIds(sourceAccountId, destinationAccountId);
+        final Lock first = locks.get(0);
+        final Lock second = locks.get(1);
+        first.lock();
+        second.lock();
+        final Account sourceAccount = this.accounts.get(sourceAccountId);
+        checkBalance(sourceAccount.getBalance(), amount, first, second);
+        final Account destinationAccount = this.accounts.get(destinationAccountId);
+        final Account updatedDestinationAccount = destinationAccount.topUp(amount);
+        final Account updatedSourceAccount = sourceAccount.withdraw(amount);
+        updateAccount(updatedSourceAccount);
+        updateAccount(updatedDestinationAccount);
+        second.unlock();
+        first.unlock();
+    }
+
+    private void checkBalance(final BigDecimal balance, final BigDecimal amount, final Lock first, final Lock second) {
+        if(balance.compareTo(amount) < 0) {
+            second.unlock();
+            first.unlock();
+            throw new IllegalArgumentException("Balance is too low!");
+        }
+    }
+
+    private List<Lock> getSortedLocksForIds(final String id1, final String id2) {
+        return Stream.of(id1, id2).sorted().map(this.accountLocks::get).collect(toList());
     }
 }

@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 import com.kg.money.transfers.config.MoneyTransferServiceConfiguration;
 import com.kg.money.transfers.config.server.GrizzlyServer;
 import com.kg.money.transfers.config.server.Server;
-import com.kg.money.transfers.storage.FileAccountStorage;
+import com.kg.money.transfers.accounts.FileAccounts;
 
 class MoneyTransferResourceTest {
 
@@ -40,7 +40,7 @@ class MoneyTransferResourceTest {
 
     private static Server configureServer() {
         final ResourceConfig resourceConfig = new ResourceConfig()
-                .register(new MoneyTransferResource(new FileAccountStorage("test-accounts.json")));
+                .register(new MoneyTransferResource(new FileAccounts("test-accounts.json")));
         final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(SERVER_URI, resourceConfig);
         return new GrizzlyServer(server);
     }

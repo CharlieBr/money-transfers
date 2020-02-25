@@ -26,8 +26,9 @@ class MoneyTransferRequestValidatorTest {
                 .put("text-property", "text")
                 .put("numeric-property", 123)
                 .put("blank-text-property", " ")
-                .put("zero", 0)
-                .put("less-than-zero", -90.02);
+                .put("zero", 0.0)
+                .put("less-than-zero", -90.02)
+                .put("too-many-digits", 90.12344);
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> MoneyTransferRequestValidator.validateTextProperty(node, "numeric-property"))
                 .withMessage("Invalid property 'numeric-property'. Should be text value!");
@@ -43,6 +44,10 @@ class MoneyTransferRequestValidatorTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> MoneyTransferRequestValidator.validateNumericProperty(node, "less-than-zero"))
                 .withMessage("Invalid property 'less-than-zero'. Should be larger than 0!");
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> MoneyTransferRequestValidator.validateNumericProperty(node, "too-many-digits"))
+                .withMessage("Invalid property 'too-many-digits'. " +
+                        "Should have at most 2 digits to the right of the decimal point!");
     }
 
     @Test

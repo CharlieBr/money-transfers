@@ -3,7 +3,7 @@ package com.kg.money.transfers.validators;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.kg.money.transfers.storage.AccountStorage;
+import com.kg.money.transfers.accounts.Accounts;
 
 public class MoneyTransferRequestValidator {
 
@@ -28,6 +28,10 @@ public class MoneyTransferRequestValidator {
         if(propertyValue.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException(invalidPropertyMessage(name, "Should be larger than 0!"));
         }
+        if(propertyValue.stripTrailingZeros().scale() > 2) {
+            throw new IllegalArgumentException(invalidPropertyMessage(name,
+                    "Should have at most 2 digits to the right of the decimal point!"));
+        }
         return propertyValue;
     }
 
@@ -47,8 +51,8 @@ public class MoneyTransferRequestValidator {
         return "Missing property '" + name + "'!";
     }
 
-    public static String validateExistingAccount(final String id, final AccountStorage accountStorage) {
-        if(!accountStorage.exists(id)) {
+    public static String validateExistingAccount(final String id, final Accounts accounts) {
+        if(!accounts.exists(id)) {
             throw new IllegalArgumentException("Account with id " + id + " does not exist!");
         }
         return id;

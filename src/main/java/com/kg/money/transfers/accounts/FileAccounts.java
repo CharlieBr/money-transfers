@@ -1,4 +1,4 @@
-package com.kg.money.transfers.storage;
+package com.kg.money.transfers.accounts;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
@@ -13,13 +13,14 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import com.kg.money.transfers.model.Account;
+import com.kg.money.transfers.model.UpdatedAccounts;
 
-public class FileAccountStorage implements AccountStorage {
+public class FileAccounts implements Accounts {
     private final Map<String, Account> accounts = new ConcurrentHashMap<>();
     private final Map<String, Lock> accountLocks = new ConcurrentHashMap<>();
 
-    public FileAccountStorage(final String filename) {
-        this.accounts.putAll(AccountStorageFileParser.parseAccountsFromFile(filename)
+    public FileAccounts(final String filename) {
+        this.accounts.putAll(AccountsFileParser.parseAccountsFromFile(filename)
                 .stream()
                 .collect(toMap(Account::getId, Function.identity())));
         this.accountLocks.putAll(this.accounts.keySet().stream().collect(toMap(id -> id, id -> new ReentrantLock())));
@@ -35,13 +36,14 @@ public class FileAccountStorage implements AccountStorage {
         return this.accounts.get(id).getBalance();
     }
 
-    @Override
     public void updateAccount(final Account account) {
         this.accounts.put(account.getId(), account);
     }
 
     @Override
-    public void transfer(final String sourceAccountId, final String destinationAccountId, final BigDecimal amount) {
+    public UpdatedAccounts transfer(final String sourceAccountId,
+                                    final String destinationAccountId,
+                                    final BigDecimal amount) {
         final List<Lock> locks = getSortedLocksForIds(sourceAccountId, destinationAccountId);
         final Lock first = locks.get(0);
         final Lock second = locks.get(1);
@@ -56,13 +58,14 @@ public class FileAccountStorage implements AccountStorage {
         updateAccount(updatedDestinationAccount);
         second.unlock();
         first.unlock();
+        return new UpdatedAccounts(updatedSourceAccount, updatedDestinationAccount);
     }
 
     private void checkBalance(final BigDecimal balance, final BigDecimal amount, final Lock first, final Lock second) {
         if(balance.compareTo(amount) < 0) {
             second.unlock();
             first.unlock();
-            throw new IllegalArgumentException("Balance is too low!");
+            throw new IllegalArgumentException(String.format("Balance %.2f of source account is too low!", balance));
         }
     }
 

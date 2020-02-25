@@ -31,11 +31,16 @@ public class MoneyTransferRequest {
         return this.amount;
     }
 
-    public static MoneyTransferRequest fromJson(final String json) throws JsonProcessingException {
-        final JsonNode node = OBJECT_MAPPER.readTree(json);
-        final String from = MoneyTransferRequestValidator.validateTextProperty(node, "from");
-        final String to = MoneyTransferRequestValidator.validateTextProperty(node, "to");
-        final BigDecimal amount = MoneyTransferRequestValidator.validateNumericProperty(node, "amount");
-        return new MoneyTransferRequest(from, to, amount);
+    public static MoneyTransferRequest fromJson(final String json) {
+        try {
+            final JsonNode node = OBJECT_MAPPER.readTree(json);
+            final String from = MoneyTransferRequestValidator.validateTextProperty(node, "from");
+            final String to = MoneyTransferRequestValidator.validateTextProperty(node, "to");
+            final BigDecimal amount = MoneyTransferRequestValidator.validateNumericProperty(node, "amount");
+            return new MoneyTransferRequest(from, to, amount);
+        }
+        catch(final JsonProcessingException e) {
+           throw new IllegalArgumentException("Request body is missing or invalid JSON!");
+        }
     }
 }

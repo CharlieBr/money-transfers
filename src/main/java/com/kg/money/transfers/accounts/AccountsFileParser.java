@@ -1,4 +1,4 @@
-package com.kg.money.transfers.storage;
+package com.kg.money.transfers.accounts;
 
 import static java.util.stream.Collectors.toSet;
 
@@ -8,14 +8,16 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.StreamSupport;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kg.money.transfers.model.Account;
 
-class AccountStorageFileParser {
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
-            .configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+class AccountsFileParser {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AccountsFileParser.class);
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public static Set<Account> parseAccountsFromFile(final String filename) {
         final Set<JsonNode> accounts = readAccountsFromFile(filename);
@@ -23,16 +25,17 @@ class AccountStorageFileParser {
             throw new RuntimeException("No accounts data in file '" + filename + "'");
         }
         return accounts.stream()
-                .map(node -> new Account(node.path("id").asText(), node.path("value").decimalValue()))
+                .map(node -> new Account(node.path("id").asText(), node.path("balance").decimalValue()))
                 .collect(toSet());
     }
 
     private static Set<JsonNode> readAccountsFromFile(final String filename) {
-        try(final InputStream json = AccountStorageFileParser.class.getClassLoader().getResourceAsStream(filename)) {
+        try(final InputStream json = AccountsFileParser.class.getClassLoader().getResourceAsStream(filename)) {
             Objects.requireNonNull(json);
             return StreamSupport.stream(OBJECT_MAPPER.readTree(json).spliterator(), false).collect(toSet());
         }
         catch(final IOException e) {
+            LOGGER.error("Problem with reading accounts from file '{}' - {}", filename, e.getMessage());
             throw new RuntimeException(e);
         }
     }

@@ -1,1 +1,402 @@
-[]
+[
+  {
+    "id": "98f4f8b4-d671-445f-b818-fd351812dcbe",
+    "balance": 39.66
+  },
+  {
+    "id": "9d49932e-2ced-4054-8527-d991257e0913",
+    "balance": 60.40
+  },
+  {
+    "id": "8cef2454-4848-4c4d-bb70-928635237edd",
+    "balance": 96.91
+  },
+  {
+    "id": "2c5cd153-e67f-4313-82cf-911a8fc73898",
+    "balance": 61.00
+  },
+  {
+    "id": "3428cc42-e56a-4e5d-a605-56e82d927be1",
+    "balance": 91.87
+  },
+  {
+    "id": "f5c5eae7-11b7-4e89-b017-4e791892b8bd",
+    "balance": 16.39
+  },
+  {
+    "id": "4af00c08-d350-4cc0-952b-5acecd8bec3a",
+    "balance": 12.74
+  },
+  {
+    "id": "c014e9ee-5e44-4cdc-8034-6b2aadb6c1df",
+    "balance": 72.84
+  },
+  {
+    "id": "2e45e422-b3ca-408a-a7da-9b0913fa1f31",
+    "balance": 27.40
+  },
+  {
+    "id": "53102be5-1eaa-48c7-9a01-eeb9a3aa8adc",
+    "balance": 33.51
+  },
+  {
+    "id": "41647429-ab0e-4d42-8d93-535052a0a772",
+    "balance": 89.51
+  },
+  {
+    "id": "26f00e35-0d37-4da5-8882-48ee8aa2ef65",
+    "balance": 32.16
+  },
+  {
+    "id": "8d6a455c-95b8-4476-90cc-fa60a34e88c9",
+    "balance": 88.30
+  },
+  {
+    "id": "2592825f-2286-4b1b-9cd5-95cfb6a0046f",
+    "balance": 32.03
+  },
+  {
+    "id": "58b49fc9-198e-4093-aa8a-503bd161f188",
+    "balance": 10.09
+  },
+  {
+    "id": "da7b78d6-3cd4-4e4d-9f8d-8794a9881138",
+    "balance": 76.11
+  },
+  {
+    "id": "92659591-15a6-455c-af8d-0e9f5b594b07",
+    "balance": 21.06
+  },
+  {
+    "id": "ecd3acd2-ca86-49f1-b5c8-41e284ba6fee",
+    "balance": 82.51
+  },
+  {
+    "id": "e11d6cd0-a52e-4f5a-b44a-c0de271bb9e4",
+    "balance": 18.98
+  },
+  {
+    "id": "884a8307-cfe3-4528-87b2-d114d3ebf6a8",
+    "balance": 88.39
+  },
+  {
+    "id": "7a22600d-009f-4021-9d27-d07002978beb",
+    "balance": 10.98
+  },
+  {
+    "id": "14f53f39-a382-495f-ae22-b538bdb1d74c",
+    "balance": 92.45
+  },
+  {
+    "id": "369c70c9-cb83-4129-a711-3972ad37bd74",
+    "balance": 99.98
+  },
+  {
+    "id": "09a2d7c0-e58a-419f-ac06-fa3f14597593",
+    "balance": 5.851
+  },
+  {
+    "id": "f4f70d33-8b77-4076-896d-4ff30bf18c57",
+    "balance": 45.16
+  },
+  {
+    "id": "4ec354ec-196f-46b5-ba05-4805ecfda1db",
+    "balance": 79.89
+  },
+  {
+    "id": "dc6e63ae-33a9-45a9-bb7b-ce484eaebc3b",
+    "balance": 60.72
+  },
+  {
+    "id": "17b0f9f9-4317-4b3d-9294-fbe461dad71a",
+    "balance": 53.55
+  },
+  {
+    "id": "05aa262f-7f27-44c8-a6fe-4c92518c6e58",
+    "balance": 40.74
+  },
+  {
+    "id": "f1fc5e7e-f7c9-411a-ae45-477409df457a",
+    "balance": 29.97
+  },
+  {
+    "id": "3874368e-afd8-4444-8f2a-b3d212241f0d",
+    "balance": 19.69
+  },
+  {
+    "id": "f2cb2574-ac5d-4f60-acbd-2e1ea279a050",
+    "balance": 7.341
+  },
+  {
+    "id": "67826695-99e0-4267-8b9b-c1c604a10459",
+    "balance": 71.72
+  },
+  {
+    "id": "e4600ea2-cee5-4a08-b7c8-04a89450af17",
+    "balance": 21.81
+  },
+  {
+    "id": "8917315e-e2d7-4677-900a-5a1b6cf03d86",
+    "balance": 8.280
+  },
+  {
+    "id": "abfd2bbe-93a7-4cf2-891d-a09c4e3360fc",
+    "balance": 7.123
+  },
+  {
+    "id": "2e7cac95-7f57-45cb-aed2-ca85d5db7b76",
+    "balance": 89.94
+  },
+  {
+    "id": "270c5c57-9711-4529-b195-040969353dc3",
+    "balance": 94.74
+  },
+  {
+    "id": "f996ee13-ffcd-4fbb-ba1e-1eaed163fe57",
+    "balance": 32.68
+  },
+  {
+    "id": "3927329c-ab93-4aa7-862d-76f56cd15661",
+    "balance": 8.290
+  },
+  {
+    "id": "d8f87e76-1a13-4875-8719-604bc22b8aa5",
+    "balance": 63.52
+  },
+  {
+    "id": "9ff900f2-fbe0-495b-b3c6-9207bb8cbc25",
+    "balance": 94.98
+  },
+  {
+    "id": "ace0a642-05ec-473f-873a-78986b4ae913",
+    "balance": 88.89
+  },
+  {
+    "id": "ff23e57c-1488-4ce2-a2ad-e3c932c2ae41",
+    "balance": 64.14
+  },
+  {
+    "id": "5b2a11bc-5b4d-40f0-acf1-42713c5e01f4",
+    "balance": 49.60
+  },
+  {
+    "id": "572f075f-a1e4-4da4-8386-2a9d944e73e6",
+    "balance": 7.485
+  },
+  {
+    "id": "cffde0e8-c62b-4337-978d-758ab9fdfc44",
+    "balance": 87.72
+  },
+  {
+    "id": "d4e31138-f471-45fb-ae7a-010de13371cd",
+    "balance": 77.80
+  },
+  {
+    "id": "df1b2e26-ad4b-4546-8ed3-e620678b0aa9",
+    "balance": 77.25
+  },
+  {
+    "id": "b56a195c-7685-43d9-999c-013955a64e0d",
+    "balance": 30.49
+  },
+  {
+    "id": "c7f05a91-14f2-403d-aa69-be13970206be",
+    "balance": 25.99
+  },
+  {
+    "id": "2a16e104-1127-4c7d-82da-ddd0f69302d9",
+    "balance": 48.75
+  },
+  {
+    "id": "354d4752-acbe-4ff6-a4d9-06dd1a81e68d",
+    "balance": 41.20
+  },
+  {
+    "id": "8745cc3b-5297-4d54-b4b2-f5657559eff8",
+    "balance": 95.33
+  },
+  {
+    "id": "35a661db-0f70-438e-a60f-89868f1737f9",
+    "balance": 35.38
+  },
+  {
+    "id": "5efe69e8-45fe-4ee5-b541-ef62f426f268",
+    "balance": 65.81
+  },
+  {
+    "id": "8adee38e-9807-404d-8509-d461984e2157",
+    "balance": 97.21
+  },
+  {
+    "id": "6dcf52ce-2caa-4f2c-b7d8-d7bd1711edfd",
+    "balance": 68.27
+  },
+  {
+    "id": "1918a39a-3009-4123-afef-ab817c36837b",
+    "balance": 50.76
+  },
+  {
+    "id": "be8c6712-76cc-4a9e-96f6-5a5108900f8d",
+    "balance": 66.49
+  },
+  {
+    "id": "0927f269-79f4-4fe0-a355-5d3034fe9384",
+    "balance": 6.178
+  },
+  {
+    "id": "05e6fa18-3524-4779-a919-57890bd68caf",
+    "balance": 97.11
+  },
+  {
+    "id": "07f06f3d-7203-40b0-b649-2868299033d3",
+    "balance": 66.34
+  },
+  {
+    "id": "c43a0f95-5c5d-4570-af47-ca02fef673b2",
+    "balance": 90.62
+  },
+  {
+    "id": "41cc6d6d-6165-4e41-aa3e-fa6cc82d73d6",
+    "balance": 95.20
+  },
+  {
+    "id": "77a36a24-8b85-450e-8be8-0952a4f6ab00",
+    "balance": 81.07
+  },
+  {
+    "id": "77553057-2cbb-4df5-959d-de281e8b90f6",
+    "balance": 89.65
+  },
+  {
+    "id": "51b47b0a-2653-40eb-a3da-ae3824a1bf9f",
+    "balance": 5.210
+  },
+  {
+    "id": "37ff067d-25af-4c87-b7f9-e44124ddeea7",
+    "balance": 91.49
+  },
+  {
+    "id": "2c4e1743-9fb4-4230-80b1-c43c3631cf23",
+    "balance": 49.44
+  },
+  {
+    "id": "cf24316d-75ca-437f-977f-dfc299424157",
+    "balance": 61.08
+  },
+  {
+    "id": "6020f222-2209-404f-988d-109f768a7759",
+    "balance": 67.08
+  },
+  {
+    "id": "51740447-7ad6-40b5-8ef3-2874b6082387",
+    "balance": 37.47
+  },
+  {
+    "id": "3524b22b-ebb7-43d8-89e1-9eed661fe8a1",
+    "balance": 31.73
+  },
+  {
+    "id": "8e1d9036-6106-4363-96f0-208d29addb45",
+    "balance": 79.76
+  },
+  {
+    "id": "a0091965-485b-437e-b626-1f42d5c033b2",
+    "balance": 19.88
+  },
+  {
+    "id": "ff85fb9d-6f42-4cc1-8241-d82a4852d913",
+    "balance": 14.24
+  },
+  {
+    "id": "60123dd6-dbb8-4283-a495-4080920136f6",
+    "balance": 89.98
+  },
+  {
+    "id": "2a75ee9c-3ad0-4292-8b11-52eedefbbbe5",
+    "balance": 65.26
+  },
+  {
+    "id": "3964e973-0a74-41ad-9def-d0494539f2b4",
+    "balance": 93.00
+  },
+  {
+    "id": "9c7d5ec9-f470-42fd-b434-22b0f9bed0b7",
+    "balance": 84.20
+  },
+  {
+    "id": "96183eaf-1a3d-4ceb-883f-f13223bb0bd5",
+    "balance": 62.72
+  },
+  {
+    "id": "58615a0f-7c4e-4cb8-bc91-2306fc0128a5",
+    "balance": 89.17
+  },
+  {
+    "id": "282dabac-4126-4f2c-8645-5fe801009f36",
+    "balance": 81.27
+  },
+  {
+    "id": "60f5e298-4c56-4abb-aa1d-c67348c8e7e1",
+    "balance": 13.81
+  },
+  {
+    "id": "076d5e44-ae2f-454c-ac4a-78aca10ef51e",
+    "balance": 39.06
+  },
+  {
+    "id": "a578421b-ca1e-49de-b1a6-078d86de4202",
+    "balance": 30.41
+  },
+  {
+    "id": "2e048556-7443-48e3-86b3-7042a4c861a8",
+    "balance": 36.39
+  },
+  {
+    "id": "ccb4b319-74bb-4334-a3c8-0780ac712b06",
+    "balance": 52.45
+  },
+  {
+    "id": "a5f4a058-96ce-4276-baa8-0a28157f2ebb",
+    "balance": 41.49
+  },
+  {
+    "id": "b273bb3b-7ff3-4bf6-9bfe-ea50edcb5d41",
+    "balance": 44.00
+  },
+  {
+    "id": "7aa8e717-a2ca-4feb-ac5a-5702b9612f19",
+    "balance": 93.65
+  },
+  {
+    "id": "fd48480c-e742-481d-a575-7f50007f1de8",
+    "balance": 24.49
+  },
+  {
+    "id": "cf26e493-b99a-4070-ab69-dee63718fd91",
+    "balance": 46.15
+  },
+  {
+    "id": "0840fa4b-1665-4d29-a7b8-3b6023e0828f",
+    "balance": 84.15
+  },
+  {
+    "id": "e62048ec-60c9-4c3d-b383-4483b94e03c4",
+    "balance": 91.05
+  },
+  {
+    "id": "b4054675-21bd-4a93-81e6-8cea5a943a5e",
+    "balance": 38.13
+  },
+  {
+    "id": "fe014d4b-d31d-4695-921f-7e3016189cb3",
+    "balance": 10.83
+  },
+  {
+    "id": "422f316c-32d2-40f3-b597-7248b9e499b5",
+    "balance": 89.30
+  },
+  {
+    "id": "747fa154-907d-4304-bc98-4aaa8873ef9c",
+    "balance": 11.43
+  }
+]

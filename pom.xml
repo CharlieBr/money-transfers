@@ -12,7 +12,7 @@
         <mainClass>com.kg.money.transfers.MoneyTransferService</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jersey.version>2.30.1</jersey.version>
-        <jackson.version>2.10.2</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <slf4j.version>1.7.30</slf4j.version>
         <junit.version>5.6.0</junit.version>
         <assertj.version>3.15.0</assertj.version>
